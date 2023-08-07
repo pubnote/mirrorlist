@@ -4,7 +4,7 @@ set -o pipefail
 for url in ${*}; do
     CHECKSUM=$(curl -fsSL -o - "${url}" | sha256sum | cut -f 1 -d ' ')
     #echo CHECKSUM: ${CHECKSUM}
-    DIR=$(echo "${CHECKSUM}" | sed -r 's/(.{8})/\1\//g')
+    DIR=$(echo "${CHECKSUM}" | sed -r 's/(.{4})/\1\//g')
     #echo DIR: ${DIR}
     mkdir -p "${DIR}"
     echo "${url}" >> "${DIR}"/mirrorlist
